@@ -14,11 +14,14 @@ function flatten(arr){
 }
 // recursion 0
 // arr = [1, 2, 3, [4, 5]]
-// res = [1,2,3,4,5]
+// for loop 끝나기 전
+// result = [1,2,3 아직 열려있음 for 아직 끝난게 아님
+// array 만나면? flatten(arr[i])를 다시 호출하므로 result=[] 는 초기화가 되고, arr[i]의 요소가 배열인지 다시 검사 
 
 //recursion 1
 // arr = [4,5]
-// res = 
+// res = [4,5]
+// result 반환값 [4,5] 가지고 flatten() 호출했던 곳으로 다시 돌아감
 
 let out = flatten([1, 2, 3, [4, 5] ]) // [1, 2, 3, 4, 5]
 console.log(out)
