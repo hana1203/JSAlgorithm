@@ -36,6 +36,49 @@ class SinglyLinkedList {
         this.length += 1;
         return this; //return the linked list 전체 리스트 반환
     }
+
+    //pop 메서드 구현
+    //list에 노드없으면 undefined 반환
+    //tail에 닿을때까지 반복
+    //마지막에서 2번째 노드 (2nd to last node)의 next 속성을 null로 하기
+    //마지막에서 2번째 노드를 tail로 셋
+    //길이를 1씩 감소
+    //removed node의 값을 반환 -> 제거된 노드를 별도 변수에 저장해놓고 있기 
+    pop() {
+        if (this.length === 0) {
+            return undefined;
+        }
+        let current = this.head;
+        let newTail = current;
+        while (current.next) {//tail나올때까지 끝까지 체크
+            newTail = current;
+            current = current.next;
+        }              
+        this.tail = newTail;
+        this.tail.next = null;
+        this.length--;
+        //맨 마지막 첫번쨰 요소 1개 pop을해도 list를 찍어보면 빈 list가 아닌 첫번째 요소 담겨있다.
+        if (this.legnth ===0) {
+            this.head = null;
+            this.tail = null;
+        }
+        return current;
+    }
+
+    //Nodes 없으면 undefined 반환
+    //변수에 current head 저장
+    //head속성을 현재 head의 다음 속성으로 셋ㅌ
+    //길이 1만큼 줄이기
+    //removed된 node 값 반환 
+    shift() {
+        if (this.length === 0) {
+            return undefined;
+        }
+        let current = this.head;
+        this.head = current.next;
+        this.length -= 1;
+        return current;
+    }
 }
 
 let list = new SinglyLinkedList();
@@ -50,3 +93,25 @@ console.log(list)
 console.log(list.head) //Node { val: 'hey', next: Node { val: 'shake it off', next: null } }
 console.log(list.head.next) //Node { val: 'shake it off', next: null }
 console.log(list.head.next.next) //null
+
+console.log("====for pop()======")
+list.push("ahh")
+console.log(list.pop()) //Node { val: 'ahh', next: null }
+console.log(list) 
+//SinglyLinkedList {
+//     head: Node { val: 'hey', next: Node { val: 'shake it off', next: null } },
+//     tail: Node { val: 'shake it off', next: null },
+//     length: 2
+//   }
+console.log(list.pop())
+console.log(list)
+console.log(list.pop())
+console.log(list)
+console.log(list.pop()) //undefined
+console.log(list)
+
+console.log("====for shift()======")
+list.push("2hey");
+list.push("2shake it off")
+list.push("2ahh")
+console.log(list.shift())
