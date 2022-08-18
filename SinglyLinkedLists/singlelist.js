@@ -26,9 +26,9 @@ class SinglyLinkedList {
     }
     push(val) {
         let newnode = new Node(val);
-        if (this.head === null) {
+        if (!this.head) {//this.head가 null이면
             this.head = newnode;
-            this.tail = newnode; //this.tail = this.head 로도 작성 가능. 
+            this.tail = this.head; //this.tail = this.head 로도 작성 가능. 
         } else {
             this.tail.next = newnode;
             this.tail = newnode;
@@ -45,7 +45,7 @@ class SinglyLinkedList {
     //길이를 1씩 감소
     //removed node의 값을 반환 -> 제거된 노드를 별도 변수에 저장해놓고 있기 
     pop() {
-        if (this.length === 0) {
+        if (!this.head) { //this.head가 없으면
             return undefined;
         }
         let current = this.head;
@@ -57,8 +57,11 @@ class SinglyLinkedList {
         this.tail = newTail;
         this.tail.next = null;
         this.length--;
+
         //맨 마지막 첫번쨰 요소 1개 pop을해도 list를 찍어보면 빈 list가 아닌 첫번째 요소 담겨있다.
-        if (this.legnth ===0) {
+        //리스트 길이는 0으로 줄어든 반면 여전히 헤드, 테일이 정의되어 있댜.
+        //리스트에 하나의 노드만 남은 경우 특별 케이스로 핸들링 
+        if (this.length ===0) {
             this.head = null;
             this.tail = null;
         }
