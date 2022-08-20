@@ -82,6 +82,31 @@ class SinglyLinkedList {
         this.length -= 1;
         return current;
     }
+
+    //맨앞으로 넣기 
+    unshift(val) {
+        let newNode = new Node(val); //새로운 node 만들기
+        if (this.head === null) { //if no head property
+            this.head = newNode;
+            this.tail = this.head; //초기에 리스트에 아무것도 없을 때 head, tail 모두 newNode 가리킴 
+        } else {
+            //새로 생성된 노드의 next property가 current head porperty 되게하기
+            // this.head = newNode.next 
+            // this.head.next = newNode //실패코드. next: null로 나옴 
+            newNode.next = this.head; 
+            //             HEAD
+            // "taylor" -> "shake if off" -> "ahh"
+            //새로 unshift한 요소와 이전 head 연결하기. but, 여전히 이전 요소가 헤드
+
+            //head property를 새로생성된 node가 되게 하기 
+            this.head = newNode
+            //  HEAD
+            // "taylor" -> "shake if off" -> "ahh"
+            // head를 새로운 노드가 가리키도록 업데이트하기 
+        }
+        this.length += 1;
+        return this
+    }
 }
 
 let list = new SinglyLinkedList();
@@ -114,7 +139,22 @@ console.log(list.pop()) //undefined
 console.log(list)
 
 console.log("====for shift()======")
-list.push("2hey");
-list.push("2shake it off")
-list.push("2ahh")
-console.log(list.shift())
+list.push("hey2");
+list.push("shake it off2")
+list.push("ahh2")
+console.log(list.shift()) //hey2 빠짐
+
+console.log("====for unshift()======")
+console.log(list)
+list.unshift("taylor")
+console.log(list)
+/*
+SinglyLinkedList {
+  head: Node {
+    val: 'taylor',
+    next: Node { val: 'shake it off2', next: [Node] }
+  },
+  tail: Node { val: 'ahh2', next: null },
+  length: 3
+}
+*/
