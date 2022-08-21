@@ -107,6 +107,31 @@ class SinglyLinkedList {
         this.length += 1;
         return this
     }
+
+    //get method 구현
+    get(index) {
+        //index가 list length 범위벗어나면 null 반환
+        if (index < 0 || index >= this.length) {
+            return null;
+        }
+        //index에 닿을때까지 리스트를 반복하고 그 특정 인덱스의 노드 반환하기
+        let current = this.head;
+        let count = 0;
+        while (count !== index) { 
+            current = current.next;
+            count++;
+        }
+        return current;
+    }
+
+    set(index, value) {
+        if (this.get(index) === null) {
+            return false
+        } else {
+            this.get(index).val = value
+            return true
+        }
+    }
 }
 
 let list = new SinglyLinkedList();
@@ -158,3 +183,13 @@ SinglyLinkedList {
   length: 3
 }
 */
+
+console.log("====for get(index)======")
+console.log(list.get(0))
+console.log(list.get(1))
+console.log(list.get(2))
+
+console.log("====for set(index, value)======")
+console.log(list.set(2, "set the new value")) //true
+console.log(list)
+console.log(list.set(3, "agin set the new value")) //false
