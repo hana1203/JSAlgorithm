@@ -173,6 +173,24 @@ class SinglyLinkedList {
     this.length++;
     return true;
   }
+
+  remove(idx) {
+    if (idx < 0 || idx >= this.length) {
+      return undefined;
+    }
+    if (idx === this.length - 1) {
+      //idx가 마지막노드
+      return this.pop();
+    }
+    if (idx === 0) {
+      return this.shift();
+    }
+    let prev = this.get(idx - 1);
+    let removed = prev.next;
+    prev.next = removed.next; //삭제한 노드 다음에오는게 바로 prev 다음 노드 되게하기. removed노드를 제거하면 사라지는거니.
+    this.length--;
+    return removed;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -248,3 +266,5 @@ newlist.push(103);
 // }
 console.log("=====메서드 insert(index, value)=====");
 console.log(newlist.insert(4, "새로운거")); //false
+console.log(newlist.remove(1)); //Node { val: '새로운거', next: null }
+console.log(newlist);
