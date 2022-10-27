@@ -191,6 +191,30 @@ class SinglyLinkedList {
     this.length--;
     return removed;
   }
+
+  //practical 하지는 않지만 interview나 책에서 많이 다루는 메서드
+  // head tail 바꾸기
+  // 변수 생성: next, prev, current. current 노드는 헤드로 초기화시키기
+  //loop through the list
+  //next가 prev되게하기
+  //prev가 current되게하기
+  //current를 next 되게하기
+  reverse() {
+    let current = this.head; //current노드는 헤드로 초기화
+    this.head = this.tail; //head는 tail로 치환
+    this.tail = current; //tail은 head로 치환
+
+    let next;
+    let prev = null; //처음 prev변수는 아무것도 가리키지않음
+    for (let i = 0; i < this.length; i++) {
+      //내가 직접 짜야된다면... 못짜겠다.. ㅠㅠ
+      next = current.next;
+      current.next = prev;
+      prev = current;
+      current = next;
+    }
+    return this;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -264,7 +288,16 @@ newlist.push(103);
 //   tail: Node { val: 103, next: null },
 //   length: 4
 // }
-console.log("=====메서드 insert(index, value)=====");
+console.log("=====메서드 insert / remove =====");
 console.log(newlist.insert(4, "새로운거")); //false
 console.log(newlist.remove(1)); //Node { val: '새로운거', next: null }
 console.log(newlist);
+
+console.log("=====reverse 메서드 =====");
+newlist.reverse();
+console.log(newlist);
+// SinglyLinkedList {
+//   head: Node { val: '새로운거', next: Node { val: 103, next: [Node] } },
+//   tail: Node { val: 100, next: null },
+//   length: 4
+// }
