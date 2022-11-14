@@ -1,5 +1,8 @@
 function solution(my_string) {
   let result = 0;
+  // 📌 이 경우.. i를 공유하기때문에 포문 numStr이 담긴 이후에는 i가 1 더 늘어난다. idx 3이었다가 5로 바뀜
+  // 문자와 숫자가 적어도 한개씩 떨어져있는 이 케이스에선 통과하지만 전체 요소를 하나씩 다 체크하진 않음.
+
   for (let i = 0; i < my_string.length; i++) {
     if (!isNaN(Number(my_string[i]))) {
       //각 요소를 숫자형으로 바꾼것이 isNaN이 아니면 = 숫자형이면?
