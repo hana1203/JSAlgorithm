@@ -1,18 +1,12 @@
 function solution(dots) {
-  for (let i = 0; i < dotslength; i++) {
-    let xMin = dots[0][0];
-    let xMax = dots[1][0];
-    let yMin = dots[0][1];
-    let yMax = dots[1][1];
-
-    if (dots[i][0] < xMin) xMin = dots[i][0];
-    if (dots[i][0] > xMax) xMax = dots[i][0];
-    if (dots[i][1] < yMin) yMin = dots[i][1];
-    if (dots[i][1] > yMax) yMax = dots[i][1];
-    return (xMax - xMin) * (yMax - yMin);
+  //x를 배열로 모으고 y를 배열로 모아서 제일 큰 수에서 작은거 뺀 수
+  const x = [];
+  const y = [];
+  for (let el of dots) {
+    x.push(el[0]);
+    y.push(el[1]);
   }
-
-  return x * y;
+  return (Math.max(...x) - Math.min(...x)) * (Math.max(...y) - Math.min(...y));
 }
 
 console.log(
