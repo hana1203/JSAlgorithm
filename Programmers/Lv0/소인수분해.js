@@ -13,6 +13,6 @@ function solution(n) {
   return [...new Set(arr)];
 }
 
-// console.log(solution(12));
-// console.log(solution(17));
+console.log(solution(12));
+console.log(solution(17));
 console.log(solution(420));
