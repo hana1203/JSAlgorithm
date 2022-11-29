@@ -112,12 +112,3 @@ console.log(
     [6, 9],
   ])
 ); //5
-
-//open, close status가 겹치는 경우?
-// console.log(
-//   solution([
-//     [-1, 10],
-//     [10, 1],
-//     [11, 12],
-//   ])
-// ); //9
